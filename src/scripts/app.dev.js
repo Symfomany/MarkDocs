@@ -28,7 +28,16 @@ var Defaults = {
     }
 };
 
+/**
+ * @api public
+ */
+
 var Markdocs = function () {
+
+    /**
+     * Constructor
+     * @param  {[type]} options [description]
+     */
     function Markdocs(options) {
         _classCallCheck(this, Markdocs);
 
