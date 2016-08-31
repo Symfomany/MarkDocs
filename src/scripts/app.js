@@ -5,11 +5,16 @@
  * @author Boyer Julien
  */
 var Markdocs = (function () {
-    /**
-     * Constructor
-     */
     function Markdocs() {
     }
+    /**
+     * Loading page
+     * @param  {Array<string>} arrayFiles [description]
+     * @param  {[type]} filePage   [description]
+     * @return {[type]}            [description]
+     */
+    Markdocs.prototype.loadPage = function (arrayFiles, filePage) {
+    };
     return Markdocs;
 }());
 ;

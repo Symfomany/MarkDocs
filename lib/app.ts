@@ -1,4 +1,4 @@
-import {Option} from "./Option";
+import * from "Option";
 
 /**
  * @class Greeter
