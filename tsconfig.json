@@ -1,0 +1,10 @@
+{
+	"files": [
+		"lib/app.ts"
+	],
+	"compilerOptions": {
+		"target": "ES5",
+    "moduleResolution": "node",
+		"module": "commonjs"
+	}
+}

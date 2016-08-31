@@ -53,7 +53,7 @@ gulp.task('js', function() {
        .pipe(sourcemaps.init({loadMaps: true}))
        //.pipe(uglify({ mangle: false }))
        .pipe(sourcemaps.write('./', {includeContent: true}))
-       .pipe(gulp.dest('src/scripts/'))
+       .pipe(gulp.dest('dist/js/'))
        .pipe(notify("TypeScript Modifié :)"))
        .pipe(reload({stream:true}));
 });
