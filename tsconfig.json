@@ -1,9 +1,10 @@
 {
 	"files": [
-		"lib/app.ts"
+		"lib/boot.ts"
 	],
 	"compilerOptions": {
 		"target": "ES5",
+		"pretty" : true,
     "moduleResolution": "node",
 		"module": "commonjs"
 	}

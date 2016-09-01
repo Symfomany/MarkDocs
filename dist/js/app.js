@@ -32,17 +32,12 @@ var Markdocs = (function () {
                 data_btnFilesNav: 'file-name'
             }
         };
-        console.log('okkk');
         if (typeof options.mdFiles === 'undefined' || !Array.isArray(options.mdFiles))
             throw new Error("mdFiles doit \u00EAtre un tableau...");
         this.showdown = showdown;
         this.options = options;
         this.loadPage(this.options.mdFiles, this.options.mdFiles[0]);
     }
-    /**
-     * Merge all option with default params
-     */
-    Markdocs.prototype.merge = function (option) { };
     /**
      * Loading page
      * @param  {Array<string>} arrayFiles [description]
