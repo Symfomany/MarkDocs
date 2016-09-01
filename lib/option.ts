@@ -1,3 +1,5 @@
 export interface Option {
-    showdownOptions: objet;
+    mdFiles: any;
+    showdownOptions?: any;
+    genericNames?: any
 }
