@@ -1,5 +1,6 @@
 import {Option} from './option';
 
+<<<<<<< HEAD
 /**
  * @class Markdocs
  * @version 1.0
@@ -74,80 +75,167 @@ class Markdocs {
      public sendHtml(txt:string){
        document.querySelector(`#${this.options.genericNames.container_docBody}`).innerHTML = `<div id="${this.options.genericNames.container_loadRender}">${txt}</div>`
      }
+=======
+>>>>>>> b1171884ed09b62fccdf407d22c84a14c18de03b
 
+  /**
+   * @class Markdocs
+   * @version 1.0
+   * TODO: importer underscore
+   * TODO: convertToObject return void ?
+   * TODO: user superagent
+   * TODO: user Promises
+   * TODO: use multi assignements
+   * TODO
+   */
+  export class Markdocs {
+
+
+      /**
+       * Object Showdown
+       */
+      protected showdown: any;
+
+
+      /**
+       * All default options
+       */
+      protected options: Option = {
+          mdFiles: undefined,
+          showdownOptions: {
+              tables: true
+          },
+          genericNames: {
+              container_docBody: 'markdocs-render',
+              container_docNav: 'markdocs-nav',
+              container_navGenerated: 'markdocs-nav-generated',
+              container_filesNav: 'markdocs-nav-files',
+              container_loadRender: 'markdocs-renderLoad',
+              data_btnFilesNav: 'file-name'
+          }
+      };
+
+      /**
+       * [constructor description]
+       */
+      public constructor(showdown:any, options?: Option) {
+
+        if( typeof options.mdFiles === 'undefined' || !Array.isArray(options.mdFiles))
+          throw new Error(`mdFiles doit être un tableau...`);
+
+        this.showdown = showdown;
+        this.options = options;
+        this.loadPage(this.options.mdFiles, this.options.mdFiles[0]);
+      }
 
      /**
-      * Convert to html
-      * @param  {[md]} md Mardown
+      * Setter option
       */
-     public parseMdToHtml(md:any){
+     set option (value:Option){
+        this.option = value;
+     }
 
-       for (let opp in this.options.showdownOptions){
-           this.showdown.setOption(opp, this.options.showdownOptions[opp]);
+     /**
+      * Getter option
+      */
+     get option (): Option{
+       return this.options;
+     }
+
+
+
+      /**
+       * Loading page
+       * @param  {Array<string>} arrayFiles [description]
+       * @param  {[type]} filePage   [description]
+       * @return {[type]}            [description]
+       */
+      public loadPage(arrayFiles: Array<string>, filePage: string):void{
+
+        // -**- Lit le fichier md, le converti en html et envoie son contenu à la vue
+        this.readMdFile(filePage, data => {
+
+            this.sendHtml(this.parseMdToHtml(data));
+
+        });
+
+
+      }
+
+
+      /**
+       * Add text to html
+       * @param  {string} txt texte stringify
+       */
+       public sendHtml(txt:string):void{
+         document.querySelector(`#${this.options.genericNames.container_docBody}`).innerHTML = `<div id="${this.options.genericNames.container_loadRender}">${txt}</div>`
        }
-       return this.showdown.makeHtml(md);
-     }
-
-     /**
-      * Remove extention from file
-      * @param  {string} file [description]
-      */
-     public static rmExtension(file: string){
-
-       return file.trim().replace(/\..+$/, '');
-     }
-
-     /**
-      * [convertToObject description]
-      * @param  {Array<string>} arry [description]
-      * @param  {[type]}        obj   [description]
-      */
-     public static convertToObject(array: Array<string>, obj){
-        for(let i=0; array.length > i; i++){
-            obj[i] = {};
-            obj[i].name = Markdocs.rmExtension(array[i]);
-            obj[i].path = array[i];
-        }
-     }
 
 
-     readMdFile (urlFile: string, action: any):any{
+       /**
+        * Convert to html
+        * @param  {[md]} md Mardown
+        */
+       public parseMdToHtml(md:any):string{
 
-       let reader = new XMLHttpRequest();
-
-       reader.onload = function(){
-           let data = this.responseText;
-
-           if(typeof action === 'function') {
-               action(data);
-           }
-       };
-
-       reader.open("GET", urlFile + ((/\?/).test(urlFile) ? "&" : "?") + (new Date()).getTime(), true);
-
-       reader.overrideMimeType("text/markdown; charset=UTF-8");
-       reader.setRequestHeader("Cache-Control", "no-cache");
-
-       if(reader.status == 0 || reader.status == 200) {
-           return reader.send();
-       }else{
-           throw new Error('Il y a eu une erreur lors du chargement du fichier...');
+         for (let opp in this.options.showdownOptions){
+             this.showdown.setOption(opp, this.options.showdownOptions[opp]);
+         }
+         return this.showdown.makeHtml(md);
        }
 
-     }
+       /**
+        * Remove extention from file
+        * @param  {string} file [description]
+        */
+       public static rmExtension(file: string):string{
+         return file.trim().replace(/\..+$/, '');
+       }
+
+       /**
+        * [convertToObject description]
+        * @param  {Array<string>} arry [description]
+        * @param  {[type]}        obj   [description]
+        */
+       public static convertToObject(array: Array<string>, obj: Array<any>):void{
+          for (file in obj) {
+              obj.push({
+                name : Markdocs.rmExtension(file),
+                path : file
+              });
+          }
+       }
 
 
-};
+      public static convertPathToCategory(file, lvl): string|boolean {
+
+          let arr = file.trim().split('/');
+
+          if (arr.length > lvl + 1)
+              return (arr[lvl]);
+
+          return false;
+      }
 
 
+       public static readMdFile(urlFile: string, action?:any):any{
 
-var user = new Markdocs(
-  null,
-  {
-      mdFiles: [
-          'md/doc_markdocs.v1.md',
-          'md/samples.md'
-      ],
-  }
-);
-document.body.innerHTML =  `<h3>Hye ${user}</h3>`;
+         let url = urlFile + ((/\?/).test(urlFile) ? "&" : "?") + (new Date()).getTime();
+
+         request
+           .get(url)
+           .set("text/markdown; charset=UTF-8")
+           .set("Cache-Control", "no-cache")
+           .end(function(err, res){
+             if(err){
+               throw new Error('Il y a eu une erreur lors du chargement du fichier...');
+             }
+             else if(typeof action === 'function') {
+                 action(res);
+             }
+           });
+
+       }
+
+
+  };
