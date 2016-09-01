@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+  <div class="container">
+
+    <form>
+
+      <h3 style="display:none" id="errorMessage"></h3>
+
+
+        <h1>Créer ce profil :</h1>
+        <div class="form-group">
+            <label class="control-label" for="pseudo">Pseudonyme :</label><input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Pseudo (min 6 charcatères alpha-numérique undescore autorisé)"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="sex">Sexe :</label>
+            <input type="radio" name="sex" value="homme" id="homme" /><label class="control-label" for="homme" style="font-weight:400">Homme</label>
+            <input type="radio" name="sex" value="femme" id="femme" /><label class="control-label" for="femme" style="font-weight:400">Femme</label>
+        </div>
+
+        <div class="form-group">
+            <label for="avatar">URL de l'avatar :</label>
+            <input type="text" class="form-control" name="avatar" id="avatar" placeholder="URL de l'avatar (via Flicker ou jpg/jpeg/gif/png/bmp)" />
+        </div>
+
+        <div class="form-group">
+            <label for="birthDate">Date de naissance :</label><input type="text" class="form-control" name="birthDate" id="birthDate" placeholder="Date de naissance dd/mm/yyyy (majorité requise)" />
+        </div>
+
+        <div class="form-group">
+        <label for="region">Région :</label><br />
+        <select class="form-control" id="region" name="region">
+          <option value="default" selected>Choisissez une région</option>
+          <option value="auvergne">Auvergne-Rhône-Alpes</option>
+          <option value="bourgogne">Bourgogne-Franche-Comte</option>
+          <option value="bretagne">Bretagne</option>
+          <option value="centre">Centre-Val de Loire</option>
+          <option value="corse">Corse</option>
+          <option value="grand-est">Grand-Est</option>
+          <option value="guadeloupe">Guadeloupe</option>
+          <option value="guyane">Guyane</option>
+          <option value="hauts-de-france">Hauts-de-France</option>
+          <option value="ile-de-france">Île-de-France</option>
+          <option value="martinique">Martinique</option>
+          <option value="mayotte">Mayotte</option>
+          <option value="normandie">Normandie</option>
+          <option value="aquitaine">Nouvelle-Aquitaine</option>
+          <option value="occitanie">Occitanie</option>
+          <option value="loire">Pays de la Loire</option>
+          <option value="provence">Provence-Alpes-Côte d'Azur</option>
+          <option value="reunion">Réunion</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label"  for="hobbies">Hobbies :</label><br />
+        <select class="form-control" id="hobbies" name="hobbies[]" multiple>
+          <option value="basket">Basket</option>
+          <option value="canyoning">Canyoning</option>
+          <option value="cinema">Cinéma</option>
+          <option value="escalade">Escalade</option>
+          <option value="ferrata">Via Ferrata</option>
+          <option value="football">Football</option>
+          <option value="handball">Handball</option>
+          <option value="natation">Natation</option>
+          <option value="parapente">Parapente</option>
+          <option value="parachute">Saut en parachute</option>
+          <option value="plongee">Plongée</option>
+          <option value="series">Séries TV</option>
+          <option value="ski">Ski</option>
+          <option value="tir">Tir à l'arc</option>
+        </select>
+      </div>
+
+    <div class="form-group">
+      <label for="cbNumber">Numéro :</label><input type="text" name="cbNumber" class="form-control" id="cbNumber" placeholder="12 Numéros" />
+      <label for="cbExpiration">Date d'expiration :</label><input type="text" name="cbExpiration" class="form-control" id="cbExpiration" placeholder="Date d'expiration" />
+      <label for="cbCryptogramme">Cryptogramme :</label><input type="text" name="cbCryptogramme" class="form-control" id="cbCryptogramme" placeholder="Cryptogramme" />
+    </div>
+
+    <div class="form-group">
+
+      <p>
+        <label for="budget">Budget abonnement mensuel :</label><input type="text" class="form-control" name="budget" id="budget" placeholder="Budget abonnement mensuel en €" />
+      </p>
+    </div>
+
+    <div class="form-group">
+      <p>
+        <label for="biography">Biographie :</label><br/><textarea name="biography" id="biography" class="form-control" rows="8" cols="40" placeholder="Maximum 300 mots et minimum 10 mots"></textarea>
+      </p>
+      <p id="compteur"></p>
+
+    </div>
+
+    <div class="form-group">
+      <p>
+        Comment avez-vous connu ce formulaire ?
+        <input type="checkbox" name="internet" id="internet" /> <label for="internet">Via internet</label>
+        <input type="checkbox" name="journaux" id="journaux" /> <label for="journaux">Via journaux</label>
+        <input type="checkbox" name="mobile" id="mobile" /> <label for="mobile">Via mobile</label>
+        <input type="checkbox" name="tv" id="tv" /> <label for="tv">Via TV</label>
+        <input type="checkbox" name="boucheOreille" id="boucheOreille" /> <label for="boucheOreille">Bouche à oreille</label>
+       </p>
+
+     </div>
+
+
+     <button type="button" class="btn btn-info" name="send" id="send">
+       <span class="fa fa-check"></span> Créer ce profil</button>
+
+
+    </form>
+
+  </div>
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script src="bower_components/moment/min/moment-with-locales.min.js" charset="utf-8"></script>
+
+
+    <script src="main.js" charset="utf-8"></script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "Integration",
+  "authors": [
+    "Boyer <juien@meetserious.com>"
+  ],
+  "description": "Test de bower 3WA",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "animate.css": "~3.5.1",
+    "bootstrap": "~3.3.6",
+    "slick": "*",
+    "lightbox2": "~2.8.2",
+    "mixitup": "~2.1.11"
+  }
+}
