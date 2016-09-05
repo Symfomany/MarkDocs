@@ -1,83 +1,8 @@
 import {Option} from './option';
+import * as _ from 'lodash';
 
-<<<<<<< HEAD
-/**
- * @class Markdocs
- * @version 1.0
- * TODO: importer underscore
- * TODO: convertToObject return void ?
- * TODO: user superagent
- * TODO: user Promises
- * TODO: use multi assignements
- * TODO
- */
-class Markdocs {
-
-    /**
-     * Object Showdown
-     */
-    public showdown: any;
-
-    /**
-     * All default options
-     */
-    public options: Option = {
-        mdFiles: undefined,
-        showdownOptions: {
-            tables: true
-        },
-        genericNames: {
-            container_docBody: 'markdocs-render',
-            container_docNav: 'markdocs-nav',
-            container_navGenerated: 'markdocs-nav-generated',
-            container_filesNav: 'markdocs-nav-files',
-            container_loadRender: 'markdocs-renderLoad',
-            data_btnFilesNav: 'file-name'
-        }
-    };
-
-    /**
-     * [constructor description]
-     */
-    public constructor(showdown:any, options?: Option) {
-
-      console.log('okkk');
-      if( typeof options.mdFiles === 'undefined' || !Array.isArray(options.mdFiles))
-        throw new Error(`mdFiles doit être un tableau...`);
-
-      this.showdown = showdown;
-      this.options = options;
-      this.loadPage(this.options.mdFiles, this.options.mdFiles[0]);
-    }
-
-
-    /**
-     * Loading page
-     * @param  {Array<string>} arrayFiles [description]
-     * @param  {[type]} filePage   [description]
-     * @return {[type]}            [description]
-     */
-    public loadPage(arrayFiles: Array<string>, filePage: string){
-
-      // -**- Lit le fichier md, le converti en html et envoie son contenu à la vue
-      this.readMdFile(filePage, data => {
-
-          this.sendHtml(this.parseMdToHtml(data));
-
-      });
-    }
-
-
-    /**
-     * Add text to html
-     * @param  {string} txt texte stringify
-     */
-     public sendHtml(txt:string){
-       document.querySelector(`#${this.options.genericNames.container_docBody}`).innerHTML = `<div id="${this.options.genericNames.container_loadRender}">${txt}</div>`
-     }
-=======
->>>>>>> b1171884ed09b62fccdf407d22c84a14c18de03b
-
+// declare let _: UnderscoreStatic;
+// import * as _ from 'underscore';
   /**
    * @class Markdocs
    * @version 1.0
@@ -120,12 +45,21 @@ class Markdocs {
        */
       public constructor(showdown:any, options?: Option) {
 
+      // let arr = _.countBy([1,3,5], function (item) {
+      //     return item % 2;
+      // });
+      console.log(_([1,2,3]).map(x => x * 2))
+
+        // let tab = _.map([1, 2, 3], function(num){ return num * 3; });
+        // console.log(tab);
+
         if( typeof options.mdFiles === 'undefined' || !Array.isArray(options.mdFiles))
           throw new Error(`mdFiles doit être un tableau...`);
 
         this.showdown = showdown;
         this.options = options;
         this.loadPage(this.options.mdFiles, this.options.mdFiles[0]);
+
       }
 
      /**
@@ -153,11 +87,11 @@ class Markdocs {
       public loadPage(arrayFiles: Array<string>, filePage: string):void{
 
         // -**- Lit le fichier md, le converti en html et envoie son contenu à la vue
-        this.readMdFile(filePage, data => {
-
-            this.sendHtml(this.parseMdToHtml(data));
-
-        });
+        // this.readMdFile(filePage, data => {
+        //
+        //     this.sendHtml(this.parseMdToHtml(data));
+        //
+        // });
 
 
       }
@@ -198,12 +132,12 @@ class Markdocs {
         * @param  {[type]}        obj   [description]
         */
        public static convertToObject(array: Array<string>, obj: Array<any>):void{
-          for (file in obj) {
-              obj.push({
-                name : Markdocs.rmExtension(file),
-                path : file
-              });
-          }
+          // for (file in obj) {
+          //     obj.push({
+          //       name : Markdocs.rmExtension(file),
+          //       path : file
+          //     });
+          // }
        }
 
 
@@ -222,18 +156,18 @@ class Markdocs {
 
          let url = urlFile + ((/\?/).test(urlFile) ? "&" : "?") + (new Date()).getTime();
 
-         request
-           .get(url)
-           .set("text/markdown; charset=UTF-8")
-           .set("Cache-Control", "no-cache")
-           .end(function(err, res){
-             if(err){
-               throw new Error('Il y a eu une erreur lors du chargement du fichier...');
-             }
-             else if(typeof action === 'function') {
-                 action(res);
-             }
-           });
+        //  request
+        //    .get(url)
+        //    .set("text/markdown; charset=UTF-8")
+        //    .set("Cache-Control", "no-cache")
+        //    .end(function(err, res){
+        //      if(err){
+        //        throw new Error('Il y a eu une erreur lors du chargement du fichier...');
+        //      }
+        //      else if(typeof action === 'function') {
+        //          action(res);
+        //      }
+        //    });
 
        }
 

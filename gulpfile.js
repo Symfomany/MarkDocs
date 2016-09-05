@@ -39,8 +39,8 @@ gulp.task('browser-reload', function (){
 
 //For js
 gulp.task('js', function() {
-  var bundler = browserify({debug: true})
-       .add('./lib/app.ts')
+  var bundler = browserify({insertGlobals : true,debug: true})
+       .add('./lib/boot.ts')
        .plugin(tsify);
 
    return bundler.bundle()

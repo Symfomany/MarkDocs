@@ -673,6 +673,3 @@ interface UnderscoreStatic {
 }
 
 declare var _: UnderscoreStatic;
-// declare module "underscore" {
-//   export = _;
-// }

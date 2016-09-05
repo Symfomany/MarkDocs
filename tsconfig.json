@@ -1,6 +1,7 @@
 {
 	"files": [
-		"lib/boot.ts"
+		"lib/boot.ts",
+		"typings/index.s.ts"
 	],
 	"compilerOptions": {
 		"target": "ES5",
